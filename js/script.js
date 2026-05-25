@@ -1,6 +1,6 @@
 // --- CONFIGURACIÓN ---
 // Cambia esto a la ruta donde tengas levantada la BibliAPI
-const BASE_URL = 'https://api-efeta.onrender.com';
+const BASE_URL = 'https://apiversiculos.onrender.com/';
 const MIN_LOADING_TIME = 2000; // 2 segundos de tiempo mínimo de carga
 
 // Elementos del DOM
