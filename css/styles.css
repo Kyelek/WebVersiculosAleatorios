@@ -1,0 +1,64 @@
+/* Reset básico para asegurar consistencia en navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffff;
+    color: #000000;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Evita scrolls innecesarios */
+}
+
+/* Contenedores con posicionamiento absoluto para superponerlos durante la transición */
+.container {
+    position: absolute;
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+}
+
+/* Clase para mostrar el contenedor activo */
+.container.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Estilos de la tipografía */
+.loading-text {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+#verse-text {
+    font-size: clamp(1.2rem, 5vw, 2.5rem);
+    line-height: 1.4;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+}
+
+#verse-text::before {
+    content: "«";
+}
+
+#verse-text::after {
+    content: "»";
+}
+
+#verse-citation {
+    display: block;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
