@@ -6,14 +6,16 @@
 }
 
 body {
-    background-color: #ffffff;
-    color: #000000;
+    /* Fondo cambiado a un degradado azul cielo precioso */
+    background: linear-gradient(to bottom, #76bfff 0%, #b3e3ff 100%);
+    color: #ffffff; /* Textos en blanco para contrastar con el azul */
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden; /* Evita scrolls innecesarios */
+    position: relative;
 }
 
 /* Contenedores con posicionamiento absoluto para superponerlos durante la transición */
@@ -25,6 +27,7 @@ body {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+    z-index: 10; /* Por encima de las nubes */
 }
 
 /* Clase para mostrar el contenedor activo */
@@ -36,8 +39,10 @@ body {
 /* Estilos de la tipografía */
 .loading-text {
     font-size: clamp(1.5rem, 4vw, 2.5rem);
-    font-weight: 400;
-    letter-spacing: 2px;
+    font-weight: 300; /* Un poco más fina para que quede más elegante */
+    letter-spacing: 4px; /* Un pelín más de espacio */
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #verse-text {
@@ -45,6 +50,8 @@ body {
     line-height: 1.4;
     font-style: italic;
     margin-bottom: 1.5rem;
+    /* Sombra de texto sutil para garantizar legibilidad sobre las nubes */
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); 
 }
 
 #verse-text::before {
@@ -60,5 +67,95 @@ body {
     font-size: clamp(1rem, 3vw, 1.5rem);
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ==========================================================================
+   ESTILOS DEL FONDO DINÁMICO DE NUBES
+   ========================================================================== */
+
+/* Contenedor que ocupa toda la pantalla por detrás del texto */
+.clouds-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.55; /* Nubes semi-transparentes muy sutiles */
+    pointer-events: none; /* Para que no interfiera si el usuario hace click */
+}
+
+/* Base de la nube difuminada */
+.cloud {
+    width: 250px;
+    height: 75px;
+    background: #ffffff;
+    border-radius: 200px;
+    position: absolute;
+    filter: blur(12px); /* Difuminado suave */
+}
+
+/* Esferas superiores de la nube */
+.cloud::after,
+.cloud::before {
+    content: '';
+    position: absolute;
+    background: #ffffff;
+    border-radius: 50%;
+}
+
+.cloud::after {
+    width: 110px;
+    height: 110px;
+    top: -55px;
+    left: 60px;
+}
+
+.cloud::before {
+    width: 85px;
+    height: 85px;
+    top: -45px;
+    left: 15px;
+}
+
+/* Configuración de tiempos y posiciones de cada nube */
+.cloud1 {
+    top: 15%;
+    /* Posición inicial fija, ya en pantalla */
+    left: 20%; 
+    transform: scale(1.3);
+    /* Retraso negativo: empieza COMO SI llevara 20s moviéndose */
+    animation: moveClouds 55s linear infinite;
+    animation-delay: -20s; 
+}
+
+.cloud2 {
+    top: 45%;
+    /* Posición inicial fija, en otra zona */
+    left: 70%; 
+    transform: scale(0.9);
+    animation: moveClouds 75s linear infinite;
+    animation-delay: -45s; /* Empieza casi al final de su ciclo */
+}
+
+.cloud3 {
+    top: 70%;
+    /* Posición inicial fija, más a la izquierda */
+    left: 45%; 
+    transform: scale(1.1);
+    animation: moveClouds 65s linear infinite;
+    animation-delay: -10s; /* Empieza al principio de su ciclo */
+}
+
+/* Animación infinita de izquierda a derecha */
+@keyframes moveClouds {
+    0% {
+        left: -300px;
+    }
+    100% {
+        left: 100vw;
+    }
 }
