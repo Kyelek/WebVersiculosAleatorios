@@ -1,7 +1,7 @@
-// --- CONFIGURACIÓN ---
-// Cambia esto a la ruta donde tengas levantada la BibliAPI
-const BASE_URL = 'https://apiversiculos.onrender.com';
-const MIN_LOADING_TIME = 2000; // 2 segundos de tiempo mínimo de carga
+import { API_URL } from './config.js';
+
+const BASE_URL = `${API_URL}`;
+const MIN_LOADING_TIME = 2000;
 
 // Elementos del DOM
 const loaderContainer = document.getElementById('loader-container');
